@@ -1,5 +1,5 @@
 const mongoose=require('mongoose');
-const mongouri="mongodb://localhost:27017/emart?readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false";
+const mongouri="mongodb://localhost:27017/permit?readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false";
 
 const connecttomongo=()=>{
     mongoose.connect(mongouri,()=>{

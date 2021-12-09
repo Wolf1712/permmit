@@ -3,11 +3,13 @@ const router = express.Router();
 const acceptedmessage=require('../schema/acceptedschema');
 const askmessage=require('../schema/askschema');
 
+
 // fetching all the message permisons from database
-router.get('/fetchallpermission',async(req,res)=()=>{
+router.get('/fetch',async (req,res)=>{
     try{
+        
        let messages = await askmessage.find({});
-    //    res.json(messages);
+       res.json(messages);
        return res.status(200).send(messages); 
     }
     catch(err){
