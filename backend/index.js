@@ -16,6 +16,8 @@ app.use(router);
 
 app.use(router1);
 app.use('/getpermissions',require('./routes/getmessage'))
+app.use('/own',require("./routes/self"))
+
 
 app.listen(port, () => {
     console.log(`permision app listening at http://localhost:${port}`);

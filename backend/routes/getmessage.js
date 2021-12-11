@@ -33,11 +33,42 @@ router.put('/:id',async(req,res)=>{
  
  })
 
-//  
-// router.post('/accepted/:id',async(req,res)=()=>{
-
-//   try()
-
-
+//  Edit Message for Status Check sucess true
+router.put('/update/:id',async(req,res)=>{
+    //  const status="true"
+  try{
+    const note = await askmessage.findByIdAndUpdate(req.params.id, { $set: {'status': "true"} }, { new: true })
+    console.log(note);
+    res.json({ note });
+} catch (error) {
+    console.error(error.message);
+    res.status(500).send("Internal Server Error");
+}
+})
+//  Edit Message for Status Check sucess false
+router.put('/false/:id',async(req,res)=>{
+    //  const status="true"
+  try{
+    let magic = await askmessage.findByIdAndUpdate(req.params.id, { $set: {'status': "false"} }, { new: true })
+    console.log(magic);
+    res.json({ magic });
+} catch (error) {
+    console.error(error.message);
+    res.status(500).send("Internal Server Error");
+}
+})
+// fetching details for user for view my permison
+// router.get('/:name',async(req,res)=>{
+//     //  const status="true"
+//   try{
+//     const mag = await askmessage.findOne({name : req.params.name})
+    
+//     res.json(mag); 
+//     console.log(req.params.name);
+    
+// } catch (error) {
+//     console.error(error.message);
+//     res.status(500).send("Internal Server Error");
+// }
 // })
 module.exports = router;

@@ -27,6 +27,10 @@ const askSchema = new Schema({
     type: Date,
     default: Date.now,
   },
+  status:{
+    type: String,
+    default :"null"
+  }
 });
 const ask = mongoose.model("ask", askSchema);
 module.exports = ask;

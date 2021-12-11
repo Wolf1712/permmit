@@ -30,7 +30,7 @@
 .container .card
 {
    
- width: 320px;
+ /* width: 900px; */
  
  padding: 40px 30px;
  background: #ebf5fc;
@@ -56,13 +56,13 @@
  margin-top: 20px;
  text-align: center;
 }
-.container .card .contentBx h5
+/* .container .card .contentBx h5
 {
  color: #32a3b1;
  font-weight: 700;
  font-size: 1.4em;
  letter-spacing: 2px;
-}
+} */
 .container .card .contentBx p
 {
  color: #32a3b1;

@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link, useLocation,useHistory} from "react-router-dom";
-
+import ppic from "../img/wave.png"
+import './Navstyle.css'
 const Navbar = () => {
   return (
     <div>
@@ -16,6 +17,20 @@ const Navbar = () => {
           <a className="nav-link active" aria-current="page" href="/allpermissions">All permission <i class="fa fa-globe" aria-hidden="true"></i></a>
         </li>
       </ul>
+      <div className="nav-right">
+                {/* <div className="search-box">
+                    <img src={search} alt="" />
+                    <input type="text" placeholder="Search"/>
+                </div> */}
+                <div className="nav-user-icon online" style={{
+                  position:"absolute",
+                  right:"30px",
+                  top:"10px"
+                }}>
+                  <div className="dicon"> <i className="fas fa-user" style={{}}></i></div>
+               
+                </div>
+            </div>
       <form className="d-flex">
         {/* <div className="seperate-button"> */}
         {/* <Link className="btn btn-primary mx-1 " to="/login" role="button">Logout</Link> */}

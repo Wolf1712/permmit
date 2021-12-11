@@ -1,8 +1,23 @@
-.two{
+.container{
     display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
 	justify-content: space-around;
 	align-items: stretch;
 	align-content: space-around;
+}
+
+.container .card
+{
+   
+ width: 900px;
+ /* word-wrap: normal; */
+ /* padding: 40px 30px; */
+ background: #ebf5fc;
+ border-radius: 40px;
+ box-shadow: -6px -6px 20px rgba(255,255,255,1), 6px 6px 20px rgba(0,0,0,0.1);
+}
+.container .card:hover
+{
+ box-shadow: inset -6px -6px 20px rgba(255,255,255,0.5), inset 6px 6px 20px rgba(0,0,0,0.05);
 }

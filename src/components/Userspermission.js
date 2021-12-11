@@ -1,5 +1,7 @@
 import React,{useEffect, useState} from 'react'
 import Newcard from './Newcard';
+import UserAllCards from './UserAllCards';
+import NavbarUI from './NavbarUI';
 
 const Userspermission = () => {
     const [messages, setmessages] = useState([]);
@@ -14,18 +16,20 @@ const Userspermission = () => {
     useEffect(() => {
         getmessages();
       }, []);
-return (
+return (<div>
+    <NavbarUI/>
            <div>
      <div className="container class">
                      
                      <div className="row">
                      {messages.map((element) => {
                         return <div className="col-md-4" key={element.name}>
-                            <Newcard name={element.name ? element.name : ""} message={element.message ? element.message : ""} caption={element.caption}  />
+                            <UserAllCards name={element.name ? element.name : ""} message={element.message ? element.message : ""} caption={element.caption} status={element.status}  />
                         </div>
                     })}
      </div>
                 </div> 
+    </div>
     </div>
 )
 }

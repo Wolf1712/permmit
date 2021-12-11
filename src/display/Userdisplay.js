@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useRef, useState } from 'react'
 // import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import left from "../left.svg";
+import { Link, useNavigate } from "react-router-dom";
 import right from "../right.svg";
 import'./userdisplay.css';
 import SendIcon from '@mui/icons-material/Send';
@@ -9,14 +10,26 @@ import './cards.css';
 const Userdisplay = () => {
   const host = "http://localhost:5000"
   const ref = useRef(null)
+  // const history = useNavigate();
+ 
   const refClose = useRef(null)
+  const name = JSON.parse(localStorage.getItem("data")).username;
+  console.log(name,"hi");
   const [note, setNote] = useState({ year: "", section: "",caption: "", message: ""})
   const handleClick = (e)=>{ 
     // editNote(note.id, note.etitle, note.edescription, note.etag)
     ref.current.click();
 }
+
+const onclose=(e)=>{
+refClose.current.click();
+}
+
+// 
+
 const onsend = async (e) => {
   e.preventDefault();
+
   // TODO: API Call
   // API Call 
   const {year,section,caption,message}=note
@@ -25,14 +38,15 @@ const onsend = async (e) => {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im11a2VzaCIsImVtYWlsIjoiYWJjZEBnbWFpbC5jb20iLCJyb2xlIjoic3R1ZGVudCIsImlhdCI6MTYzODg3ODk2OX0.rD4Y6T-F55WVNnVIFlhidhSoKx8OiFB4qdtruQxm5JM"
-    },
-    body: JSON.stringify({year,section,caption,message})
+       },
+    body: JSON.stringify({year,section,caption,message,"token": JSON.parse(localStorage.getItem("data")).token })
   });
 
   const m = await response.json();
          console.log(m);  
+        //  refClose.current.click();
   // setNote(notes.concat(note))
+  // history("/mukesh");
 }
 const onChange = (e)=>{
   setNote({...note, [e.target.name]: e.target.value})
@@ -67,13 +81,16 @@ const onChange = (e)=>{
                                     <div class="mb-3">
                                       <label for="exampleFormControlTextarea1" class="form-label">Message</label>
                                         <textarea type="text" class="form-control" id="message" name="message" value={note.message} onChange={onChange} rows="3"></textarea>
-                                        <Button style={{margin : "1rem 0"}} variant="contained" endIcon={<SendIcon />} onClick={onsend}>Send</Button>
-                                                 </div>
+                                        {/* <Button style={{margin : "1rem 0"}} variant="contained" endIcon={<SendIcon />} onClick={onmanage} onClick={onsend} >Send</Button> */}
+                                        </div>
                               
  
                             </form>
                         </div>
                         <div className="modal-footer">
+                        <Button style={{margin : "1rem 0"}} variant="contained" endIcon={<SendIcon />}  onClick={onsend} >Send</Button>
+                                    
+                                                 
                             {/* <button ref={refClose} type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                             <button disabled={note.etitle.length<5 || note.edescription.length<5} onClick={handleClick} type="button" className="btn btn-primary">Update Note</button> */}
                         </div>
@@ -86,7 +103,7 @@ const onChange = (e)=>{
         </div>
       </nav>
     
-          <div className="two" >
+          <div className="container" >
             <div className="row">
             <div className="col">
                 <div className="card"  style={{ width: "18rem" ,margin : "90px"}} onClick={handleClick}>
@@ -116,7 +133,7 @@ const onChange = (e)=>{
               </div> */}
               
               <div className="col">
-                <a href='/mydetail' > <div className="card"  style={{ width: "18rem",margin : "90px"}} >
+               <Link to={`my/${name}`} > <div className="card"  style={{ width: "18rem",margin : "90px"}} >
                   <img src={right} className="card-img-top" height="200px" style={{padding : "10px"}} />
                   <div className="card-body">
                     <h5 className="card-title">View My Permission <i class="fa fa-folder-open" aria-hidden="true"></i></h5>
@@ -124,10 +141,11 @@ const onChange = (e)=>{
                       Some quick example text to build on the card title and make up
                       the bulk of the card's content.
                     </p> */}
+
                     
                   </div>
-                </div> </a>
-               
+                </div> 
+               </Link>
               </div>
             </div>
           </div>
